@@ -10,6 +10,9 @@ Route::get('/mail', function (){
 
 //   return new App\Mail\TestingMail();
 
-// send mail without paramter working mail 
+// send mail without paramter working mail
  Mail::to('rohanvfx15@gmail.com')->send(new TestingMail());
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
