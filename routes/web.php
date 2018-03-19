@@ -1,6 +1,8 @@
 <?php
 
+use App\Jobs\SendEmailJob;
 use App\Mail\TestingMail;
+use Carbon\Carbon;
 
 Route::get('/', function () {
     return view('welcome');
@@ -8,10 +10,10 @@ Route::get('/', function () {
 
 Route::get('/mail', function (){
 
-//   return new App\Mail\TestingMail();
+    SendEmailJob::dispatch()
+        ->delay(Carbon::now()->addSeconds(20));
+    return 'mail sent';
 
-// send mail without paramter working mail
- Mail::to('rohanvfx15@gmail.com')->send(new TestingMail());
 });
 Auth::routes();
 
